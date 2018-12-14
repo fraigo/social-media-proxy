@@ -31,15 +31,19 @@
             text-shadow: 0px 0px 3px #fff;
             box-shadow: 3px 3px 5px 5px #888;
         }
-        .post > small {
+        .post > p {
             background-color: rgba(255,255,255,0.3);
+            white-space: nowrap;
+            height: 1.2em;
+            padding: 4px;
+            text-overflow: ellipsis;
         }
     </style>
 </head>
 <body>
     <div id="root">
     </div>
-    <script src="https://social-plugin.herokuapp.com/instagram.js?user=teslamotors"></script>
+    <script src="https://social-plugin.herokuapp.com/instagram.js?user=instagram"></script>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -58,11 +62,11 @@
             var divStyle={
                 backgroundImage: 'url('+image+')'
             }
-            return <div url={image} onClick={getComponent.bind(this)} style={{backgroundImage: 'url('+image+')'}} key={index} className='post'><small>{text}</small></div>
+            return <div url={image} onClick={getComponent.bind(this)} style={{backgroundImage: 'url('+image+')'}} key={index} className='post'><p  title={text}>{text}</p></div>
         })
         ReactDOM.render(
           <div >
-          <h2>Instagram posts for Tesla</h2>
+          <h2>Instagram posts for @Instagram</h2>
           {posts}
           </div>
           ,

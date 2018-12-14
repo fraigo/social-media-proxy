@@ -5,10 +5,10 @@ A simple plugin to proxy instagram posts and generate a javascript list of posts
 
 ## Usage
 
-Add the script in your page
+Add the script in your page, using your Instagram username in `user=your-instagram-user`
 
 ```html
-<script src="https://social-plugin.herokuapp.com/instagram.js?user=teslamotors"></script>
+<script src="https://social-plugin.herokuapp.com/instagram.js?user=instagram"></script>
 ```
 
 You can access the content of the last posts of Instagram using the variable `window.intagramPosts`
