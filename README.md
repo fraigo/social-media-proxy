@@ -28,6 +28,32 @@ You can access the content of the last posts of Instagram using the variable `wi
         })
 ```
 
+## Vue.js component
+
+```javascript
+Vue.component('instagram-custom', {
+    props:{
+      post: Object
+    },
+    created: function(){
+        this.text=this.post.node.edge_media_to_caption.edges[0].node.text;
+        this.link="https://www.instagram.com/p/"+this.post.node.shortcode+"/";
+        this.image=this.post.node.thumbnail_src;
+    },
+    template:`<div class="post">
+    <a :href="link" target="_blank">
+        <img :src="image" width="100%" :alt="text" :title="text" >
+    </a>
+    </div>` ,
+    mounted: function(){
+      window.instgrm.Embeds.process();
+    }
+  }
+)
+```
+
+
+
 ## Online example
 
 See https://social-plugin.herokuapp.com/examples/instagram.html
