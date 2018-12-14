@@ -3,7 +3,7 @@
 $PATH = @$_SERVER["PATH_INFO"];
 
 if ($PATH=="/instagram.js"){
-    include("scripts/instagram/posts.php");
+    include("scripts/instagram-posts.php");
     return;
 }
 
