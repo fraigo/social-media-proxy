@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Instagram Post example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{
+            margin:0px;
+            padding:0px;
+            box-sizing: border-box;
+        }
+        .post{
+            width:23vw;
+            height:23vw;
+            margin:2px;
+            padding:0px;
+            border:1px solid #eee;
+            display:inline-block;
+            overflow:hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            background-position: center center;
+            background-size: cover;
+            text-shadow: 0px 0px 5px #fff;
+            border-radius: 3px;
+            box-shadow: 3px 3px 3px 3px #888;
+        }
+        .post:hover{
+            text-shadow: 0px 0px 3px #fff;
+            box-shadow: 3px 3px 5px 5px #888;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+    </div>
+    <script src="https://social-plugin.herokuapp.com/instagram.js?user=teslamotors"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://unpkg.com/@material-ui/core@3.6.2/umd/material-ui.production.min.js" ></script>
+    <script type="text/babel">
+        function getComponent(e){
+            var link = e.target.getAttribute("url");
+            if (link){
+                window.open(link,'_instagram')
+            }
+        }
+        var posts=instagramPosts.map((item,index) => {
+            var text=item.node.edge_media_to_caption.edges[0].node.text
+            var link="https://www.instagram.com/p/"+item.node.shortcode+"/"
+            var image=item.node.thumbnail_src
+            var divStyle={
+                backgroundImage: 'url('+image+')'
+            }
+            return <div url={image} onClick={getComponent.bind(this)} style={{backgroundImage: 'url('+image+')'}} key={index} className='post'><small>{text}</small></div>
+        })
+        ReactDOM.render(
+          <div >
+          <h2>Instagram posts for Tesla</h2>
+          {posts}
+          </div>
+          ,
+          document.getElementById('root')
+        );
+      </script>
+</body>
+</html>
