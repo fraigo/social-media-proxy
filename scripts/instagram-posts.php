@@ -1,11 +1,14 @@
 
 <?php
 
+header("Content-type: text/javascript");
+
 $user = $_GET["user"];
 
 if (!$user){
     die("console.error('No Instagram User specified. Use: instagram.js?user=USERNAME')");
 }
+
 
 // endpoint
 $url="https://www.instagram.com/$user/";
