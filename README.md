@@ -69,10 +69,13 @@ Vue.component('instagram-post', {
 
 
 GitHub  
-https://fraigo.github.io/social-media-proxy/examples/instagram.html
+
+[https://fraigo.github.io/social-media-proxy/examples/instagram.html](https://fraigo.github.io/social-media-proxy/examples/instagram.html)
 
 Heroku  
-https://social-plugin.herokuapp.com/examples/instagram.html
+
+[https://social-plugin.herokuapp.com/examples/instagram.html](https://social-plugin.herokuapp.com/examples/instagram.html)
+
 
 
 ## Development
