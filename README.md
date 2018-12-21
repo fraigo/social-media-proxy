@@ -1,6 +1,6 @@
 # social-media-proxy
 
-A simple plugin to proxy instagram posts and generate a javascript list of posts:
+A javscript plugin to proxy instagram posts and generate a dynamic HTML list of posts. React.js and Vue.js component example.
 
 
 ## Usage
@@ -28,22 +28,35 @@ You can access the content of the last posts of Instagram using the variable `wi
         })
 ```
 
+## React.js component
+
+### Source code 
+
+See [examples/instagram.component.js](examples/instagram.component.js)
+
+### HTML/JSX example
+
+`<InstagramPosts user="instagram"/>`
+
 ## Vue.js component
 
 ```javascript
-Vue.component('instagram-custom', {
+Vue.component('instagram-post', {
     props:{
       post: Object
     },
     created: function(){
-        this.text=this.post.node.edge_media_to_caption.edges[0].node.text;
-        this.link="https://www.instagram.com/p/"+this.post.node.shortcode+"/";
-        this.image=this.post.node.thumbnail_src;
+        var post=this.post.node;
+        this.text=post.edge_media_to_caption.edges[0].node.text;
+        this.link="https://www.instagram.com/p/"+post.shortcode+"/";
+        this.image=post.thumbnail_src;
     },
     template:`<div class="post">
-    <a :href="link" target="_blank">
-        <img :src="image" width="100%" :alt="text" :title="text" >
-    </a>
+    <div class="post-content">
+      <a :href="link" target="_blank">
+          <img :src="image" width="100%" :alt="text" :title="text" >
+      </a>
+      </div>
     </div>` ,
     mounted: function(){
       window.instgrm.Embeds.process();
@@ -52,9 +65,27 @@ Vue.component('instagram-custom', {
 )
 ```
 
-
-
 ## Online example
 
-See https://social-plugin.herokuapp.com/examples/instagram.html
+
+GitHub  
+https://fraigo.github.io/social-media-proxy/examples/instagram.html
+
+Heroku  
+https://social-plugin.herokuapp.com/examples/instagram.html
+
+
+## Development
+
+Run in a local server with PHP
+
+`php -s localhost:8000 route`
+
+Script URL
+
+`http://localhost:8000/instagram.js`
+
+HTML Example URL
+
+`http://localhost:8000/examples/instagram.html`
 

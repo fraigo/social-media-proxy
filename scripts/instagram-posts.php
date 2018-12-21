@@ -3,7 +3,7 @@
 
 header("Content-type: text/javascript");
 
-$user = $_GET["user"];
+$user = @$_GET["user"];
 
 if (!$user){
     die("console.error('No Instagram User specified. Use: instagram.js?user=USERNAME')");
@@ -33,5 +33,6 @@ foreach($xml->getElementsByTagName('script') as $script) {
 try {
     window.instagramPosts=_sharedData.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges
 }catch(e){
-
+    console.error("Could not fetch Instagram posts : " + e)
+    window.instagramPosts=[]
 }

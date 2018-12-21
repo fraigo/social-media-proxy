@@ -4,20 +4,39 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Instagram Post example</title>
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body{
             margin:0px;
             padding:0px;
             box-sizing: border-box;
+            background-color: #fed;
         }
         .post{
-            width:23vw;
-            height:23vw;
-            margin:2px;
+            width:25vw;
+            height:25vw;
+            margin:0px;
+            padding:0px;
+            display:inline-block;
+        }
+        @media (max-width:600px){
+            .post{
+                width:33vw;
+                height:33vw;
+            }
+        }
+        @media (max-width:400px){
+            .post{
+                width:50vw;
+                height:50vw;
+            }
+        }
+        .post-content{
+            height: 100%;
+            margin:5px;
             padding:0px;
             border:1px solid #eee;
-            display:inline-block;
             overflow:hidden;
             text-overflow: ellipsis;
             text-align: center;
@@ -27,17 +46,30 @@
             border-radius: 3px;
             box-shadow: 3px 3px 3px 3px #888;
         }
-        .post:hover{
+        .post-content:hover{
             text-shadow: 0px 0px 3px #fff;
             box-shadow: 3px 3px 5px 5px #888;
         }
-        .post > p {
+        .post-content > p {
             background-color: rgba(255,255,255,0.3);
             white-space: nowrap;
             height: 1.2em;
             padding: 4px;
             text-overflow: ellipsis;
         }
+
+        .instagram-user-select{
+            background-color:#ddd;
+            border-radius:9px;
+            display:inline-block;
+            overflow:hidden;
+            padding:5px;
+        }
+        .instagram-user-select > button {
+            border:0px;
+            background-color: #ccc;
+        }
+
     </style>
 </head>
 <body>
@@ -48,26 +80,12 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script src="https://unpkg.com/@material-ui/core@3.6.2/umd/material-ui.production.min.js" ></script>
+    <script type="text/babel" src="instagram.component.js"></script>
     <script type="text/babel">
-        function getComponent(e){
-            var link = e.target.getAttribute("url");
-            if (link){
-                window.open(link,'_instagram')
-            }
-        }
-        var posts=instagramPosts.map((item,index) => {
-            var text=item.node.edge_media_to_caption.edges[0].node.text
-            var link="https://www.instagram.com/p/"+item.node.shortcode+"/"
-            var image=item.node.thumbnail_src
-            var divStyle={
-                backgroundImage: 'url('+image+')'
-            }
-            return <div url={image} onClick={getComponent.bind(this)} style={{backgroundImage: 'url('+image+')'}} key={index} className='post'><p  title={text}>{text}</p></div>
-        })
+        
         ReactDOM.render(
           <div >
-          <h2>Instagram posts for @Instagram</h2>
-          {posts}
+            <InstagramPosts user="instagram"/>
           </div>
           ,
           document.getElementById('root')
