@@ -36,7 +36,7 @@ foreach($xml->getElementsByTagName('script') as $script) {
     if (strpos($content,"window.__initialDataLoaded(")>0){
         echo $content;
     }
-    if (strpos($content,"window._sharedData")>0){
+    else if (strpos($content,"window._sharedData")>0){
         echo $content;
     }
 } 
