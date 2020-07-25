@@ -30,7 +30,7 @@ window.__additionalDataLoaded=function(name,data){
 foreach($xml->getElementsByTagName('script') as $script) { 
     $content= "".$script->nodeValue;
        
-    if (strpos($content,"window.__additionalDataLoaded(")>0){
+    if (strpos($content,"/".$user."/")>0){
         echo $content;
     }
 } 
