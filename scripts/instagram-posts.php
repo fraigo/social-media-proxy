@@ -18,13 +18,19 @@ $content = file_get_contents($url);
 $xml = new DOMDocument(); 
 @$xml->loadHTML($content);
 
+?>
+window.__additionalDataLoaded=function(name,data){
+   console.log(data);
+   window.instagramPosts= data.graphql.user.edge_owner_to_timeline_media.edges;
+}
+
+<?
+
 // extract relevant scripts
 foreach($xml->getElementsByTagName('script') as $script) { 
     $content= "".$script->nodeValue;
-    if (strpos($content,"_initialDataLoaded")>0){
-        echo $content;
-    }    
-    if (strpos($content,"__additionalDataLoaded")>0){
+       
+    if (strpos($content,"window.__additionalDataLoaded(")>0){
         echo $content;
     }
 } 
