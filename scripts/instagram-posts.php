@@ -24,7 +24,7 @@ window.__initialDataLoaded=function(name,data){
 }
 window.__additionalDataLoaded=function(name,data){
    console.log(data);
-   if (data.graphql)
+   if (data && data.graphql)
    window.instagramPosts= data.graphql.user.edge_owner_to_timeline_media.edges;
 }
 <?php
@@ -33,10 +33,10 @@ window.__additionalDataLoaded=function(name,data){
 foreach($xml->getElementsByTagName('script') as $script) { 
     $content= "/**script*/ ".$script->nodeValue."\n\n\n";
        
-    if (strpos($content,"window.__initialDataLoaded(")>0){
+    if (strpos($content,"/$user/")!==FALSE){
         echo $content;
     }
-    else if (strpos($content,"window._sharedData")>0){
+    else if (strpos($content,"window._sharedData =")!==FALSE){
         echo $content;
     }
 } 
