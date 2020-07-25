@@ -22,7 +22,7 @@ class InstagramPosts extends React.Component {
         script.onerror = function(e){
             console.error(e);
         }
-        script.src = "https://social-plugin.herokuapp.com/instagram.js?user=" + this.state.user
+        script.src = "/instagram.js?user=" + this.state.user
         document.body.appendChild(script)
     }
 
